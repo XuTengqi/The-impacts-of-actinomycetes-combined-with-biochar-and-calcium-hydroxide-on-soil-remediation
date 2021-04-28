@@ -1,0 +1,10 @@
+a<-read.csv("E:/paperdata/watercd3.csv",row.names = 1)
+a$Chuli<-factor(a$Chuli,levels = c("CK","B","L","D74","D74B","D74L","Act12","Act12B","Act12L","Blank"))
+a$Ac<-factor(a$Ac,levels = c("NI","D74","Act12","Blank"))
+a$Am<-factor(a$Am,levels = c("CK","B","L","Blank"))
+
+b<-aggregate(a$Cd, by=list(a$Chuli), FUN=mean) 
+write.csv(b,file="F:/watercd1.csv",quote=F,row.names = F) 
+c<-aggregate(a$Cd, by=list(a$Chuli), FUN=sd) 
+d<-c[,2]/sqrt(8)
+write.csv(d,file="F:/watercd1se.csv",quote=F,row.names = F) 
